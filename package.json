@@ -1,0 +1,53 @@
+{
+  "name": "@gbesse/jev-reponse-gouv",
+  "version": "0.1.0",
+  "description": "Assess whether a French government response substantively answers a sourced parliamentary question.",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "exports": {
+    ".": {
+      "types": "./src/index.d.mts",
+      "import": "./src/index.mjs"
+    },
+    "./jev": {
+      "types": "./src/jev.d.mts",
+      "import": "./src/jev.mjs"
+    }
+  },
+  "bin": {
+    "jev-reponse-gouv": "./bin/jev-reponse-gouv.mjs"
+  },
+  "scripts": {
+    "check": "node scripts/check.mjs",
+    "typecheck": "tsc --noEmit --strict --target ES2022 --module NodeNext docs/public-api-types.mts",
+    "test": "node --test",
+    "demo": "node examples/demo.mjs",
+    "validate": "npm run check && npm run typecheck && npm test && npm run demo"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gbesse/jev-reponse-gouv.git"
+  },
+  "keywords": [
+    "jev",
+    "typesafe-ai",
+    "civic-tech",
+    "france",
+    "government",
+    "jev",
+    "parliament"
+  ],
+  "files": [
+    "src",
+    "bin",
+    "docs",
+    "examples",
+    "scripts"
+  ]
+}
