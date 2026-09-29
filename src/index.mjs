@@ -1,4 +1,4 @@
-// Purpose: Implement the package-specific, reviewable decision boundary.
+// Objectif : implémenter la frontière de décision métier propre au dépôt.
 export const ANSWER_TYPES=["direct","partial","procedural","evasive","off_topic"];
 export function question(input){if(!input?.id||!input?.text||!input?.publishedAt||!input?.ministry||!input?.sourceUrl)throw new TypeError("Question needs id, text, publishedAt, ministry and sourceUrl");const d=new Date(input.publishedAt);if(Number.isNaN(d.valueOf()))throw new TypeError("publishedAt must be an ISO date");return{id:String(input.id),text:String(input.text),publishedAt:d.toISOString(),ministry:String(input.ministry),author:String(input.author||""),sourceUrl:String(input.sourceUrl)};}
 export function governmentAnswer(input){if(!input?.text||!input?.publishedAt||!input?.sourceUrl)throw new TypeError("Answer needs text, publishedAt and sourceUrl");const d=new Date(input.publishedAt);if(Number.isNaN(d.valueOf()))throw new TypeError("publishedAt must be an ISO date");return{text:String(input.text),publishedAt:d.toISOString(),ministry:String(input.ministry||""),sourceUrl:String(input.sourceUrl)};}

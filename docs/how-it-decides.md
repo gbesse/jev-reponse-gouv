@@ -1,5 +1,5 @@
-# How it decides
+# Comment la décision est prise
 
-Question identity, ministry, dates, response absence and elapsed time are computed in code. Jev classifies only the substantive relationship between the supplied question and answer; it does not judge political merit or truth.
+Les identifiants, ministères, dates, absences de réponse et délais sont calculés par le code. Jev évalue uniquement la relation entre les deux textes, sans juger leur vérité ni leur valeur politique.
 
-The exact questions and criteria are versioned beside the call in [src/index.mjs](../src/index.mjs). Synthetic demo probabilities are illustrative. Calibrate review thresholds on representative labels before operational use.
+La question et les critères exacts sont versionnés dans [`src/index.mjs`](../src/index.mjs). Les probabilités de la démonstration sont synthétiques. Calibrez les seuils de revue sur des cas français annotés et représentatifs avant tout usage opérationnel.
