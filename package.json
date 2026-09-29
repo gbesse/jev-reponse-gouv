@@ -1,6 +1,6 @@
 {
   "name": "@gbesse/jev-reponse-gouv",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Évalue si une réponse gouvernementale répond réellement à une question parlementaire sourcée.",
   "type": "module",
   "license": "MIT",

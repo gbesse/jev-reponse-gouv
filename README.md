@@ -2,7 +2,7 @@
 
 **Évalue si une réponse gouvernementale répond réellement à une question parlementaire sourcée.**
 
-[![Tests](https://github.com/gbesse/jev-reponse-gouv/actions/workflows/test.yml/badge.svg)](https://github.com/gbesse/jev-reponse-gouv/actions/workflows/test.yml) [MIT](LICENSE) · Node.js 22+ · v0.1.1 · Documentation française
+[![Tests](https://github.com/gbesse/jev-reponse-gouv/actions/workflows/test.yml/badge.svg)](https://github.com/gbesse/jev-reponse-gouv/actions/workflows/test.yml) [MIT](LICENSE) · Node.js 22+ · v0.1.2 · Documentation française
 
 Le dépôt calcule les délais et distingue les questions sans réponse. Lorsqu’une réponse existe, Jev la classe comme directe, partielle, procédurale, évasive ou hors sujet.
 
@@ -16,6 +16,63 @@ npm run demo
 ```
 
 La démonstration utilise uniquement des données et probabilités synthétiques. Elle n’effectue aucun appel réseau et ne constitue pas une mesure de qualité de Jev.
+
+## Exemple exécutable
+
+Cet exemple mesure si une réponse gouvernementale couvre calendrier et budget. Il utilise un fournisseur Jev simulé : aucune clé API ni connexion réseau n’est nécessaire. L’assertion intégrée fait échouer la commande si le comportement attendu change.
+
+Le code complet de [`examples/demo.mjs`](examples/demo.mjs) est directement copiable :
+
+```js
+// Objectif : démontrer la frontière de décision sans appel réseau.
+import assert from "node:assert/strict";
+import { assessResponse } from "../src/index.mjs";
+import { createFakeProvider } from "../src/jev.mjs";
+const p = createFakeProvider(() => ({
+  model: "jev-1.13.0",
+  answers: {
+    answerType: {
+      type: "choice",
+      choice: "partial",
+      probabilities: {
+        direct: 0.15,
+        partial: 0.72,
+        procedural: 0.06,
+        evasive: 0.05,
+        off_topic: 0.02,
+      },
+      confidence: 0.72,
+    },
+  },
+  usage: {},
+}));
+const resultat = await assessResponse(
+  {
+    id: "QE-42",
+    text: "Quel calendrier et quel budget sont prévus ?",
+    publishedAt: "2026-01-10",
+    ministry: "Transition écologique",
+    sourceUrl: "https://senat.fr",
+  },
+  {
+    text: "Une concertation est engagée et un calendrier sera publié. Le budget n'est pas précisé.",
+    publishedAt: "2026-03-10",
+    ministry: "Transition écologique",
+    sourceUrl: "https://senat.fr",
+  },
+  p,
+);
+assert.equal(resultat.answerType, "partial");
+console.log(JSON.stringify(resultat, null, 2));
+```
+
+Lancez-le avec :
+
+```sh
+npm run demo
+```
+
+Résultat à repérer : `answerType: partial`.
 
 ## Utilisation de la bibliothèque
 
