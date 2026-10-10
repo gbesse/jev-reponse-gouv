@@ -40,3 +40,15 @@ FR : adaptez une copie de la fixture locale à cette situation, puis vérifiez l
 EN: adapt a copy of the local fixture to this situation, then check the behavior described above. Values are illustrative, not measured Jev output.
 
 ES: adapte una copia de la fixture local a esta situación y compruebe el comportamiento descrito arriba. Los valores son ilustrativos, no resultados Jev medidos.
+
+## Second cas · Second case · Segundo caso
+
+```text
+question_status=published; answer=null
+```
+
+**FR :** Une question sans réponse doit rester dans la catégorie temporelle correspondante ; aucun verdict sémantique sur une réponse absente ne doit être inventé.
+
+**EN:** An unanswered question should remain in its corresponding timing category; do not invent a semantic verdict for a missing answer.
+
+**ES:** Una pregunta sin respuesta debe permanecer en su categoría temporal; no invente un dictamen semántico sobre una respuesta ausente.
